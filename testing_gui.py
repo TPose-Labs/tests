@@ -24,7 +24,6 @@ def loadfont(fontpath, private=True, enumerable=False):
 time = ""
 dotw = ""
 date = ""
-toggle_colon = True
 def date_loop():
 	global toggle_colon
 	global dotw
@@ -33,11 +32,6 @@ def date_loop():
 	currday = datetime.datetime.today()
 	dotw_ = calendar.day_name[currday.weekday()] + ","
 	date_ = currday.strftime("%B %d, %Y")
-	if toggle_colon:
-		time_ = currday.strftime("%I:%M %p")
-	else:
-		time_ = currday.strftime("%I %M %p")
-		toggle_colon = not toggle_colon
 	if time_ != time:
 		time = time_
 		clock.config(text=time)
@@ -47,7 +41,7 @@ def date_loop():
 	if date_ != date:
 		date = date_
 		fulldate.config(text=date)
-	day.after(100, date_loop)
+	day.after(1000, date_loop)
 
 root = Tk()
 root.attributes('-fullscreen', True)
