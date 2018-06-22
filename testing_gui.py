@@ -32,6 +32,7 @@ def date_loop():
 	currday = datetime.datetime.today()
 	dotw_ = calendar.day_name[currday.weekday()] + ","
 	date_ = currday.strftime("%B %d, %Y")
+	time_ = currday.strftime("%I:%M %p")
 	if time_ != time:
 		time = time_
 		clock.config(text=time)
@@ -51,12 +52,12 @@ root.configure(background="black")
 loadfont("fonts/Montserrat-Thin.ttf")
 montserrat_big = Font(family="Montserrat Thin", size=72)
 montserrat_small = Font(family="Montserrat Thin", size=48)
-day = Label(root, font=montserrat_big, fg="white", bg="black")
-day.grid(row=0)
-fulldate = Label(root, font=montserrat_small, fg="white", bg="black")
-fulldate.grid(row=1, column=0)
-clock = Label(root, font=montserrat_big, fg="white", bg="black")
-clock.grid(row=2)
+day = Label(root, font=montserrat_big, fg="white", bg="black", padx=5)
+day.grid(row=0, sticky="w")
+fulldate = Label(root, font=montserrat_small, fg="white", bg="black", padx=15)
+fulldate.grid(row=1, column=0, sticky="w")
+clock = Label(root, font=montserrat_small, fg="white", bg="black", padx=15)
+clock.grid(row=2, column=0, sticky="w")
 
 date_loop()
 root.mainloop()
